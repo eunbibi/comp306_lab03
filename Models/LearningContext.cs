@@ -4,21 +4,21 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace WebApp_Rds_Access.Models
 {
-    public partial class SMSContext : DbContext
+    public partial class LearningContext : DbContext
     {
-        public SMSContext()
+        public LearningContext()
         {
         }
 
-        public SMSContext(DbContextOptions<SMSContext> options)
+        public LearningContext(DbContextOptions<LearningContext> options)
             : base(options)
         {
         }
 
-        public virtual DbSet<Course> Course { get; set; }
+     /*   public virtual DbSet<Course> Course { get; set; }
         public virtual DbSet<Enrollment> Enrollment { get; set; }
-        public virtual DbSet<LoginViewModel> Login { get; set; }
-        public virtual DbSet<Student> Student { get; set; }
+        public virtual DbSet<Login> Login { get; set; }*/
+        public virtual DbSet<Students> Students { get; set; }
 
       /*  protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -31,7 +31,7 @@ namespace WebApp_Rds_Access.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Course>(entity =>
+            /*modelBuilder.Entity<Course>(entity =>
             {
                 entity.HasKey(e => e.CourseCode)
                     .HasName("PK__Course__FC00E001003A999D");
@@ -82,7 +82,7 @@ namespace WebApp_Rds_Access.Models
                     .HasConstraintName("FK_Enrollment_Student");
             });
 
-            /*modelBuilder.Entity<LoginViewModel>(entity =>
+            modelBuilder.Entity<Login>(entity =>
             {
                 entity.HasKey(e => e.LoginName)
                     .HasName("PK__Login__DB8464FEA86DD733");
@@ -97,14 +97,29 @@ namespace WebApp_Rds_Access.Models
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.LoginNameNavigation)
-                   // .WithOne(p => p.Login)
-                    .HasForeignKey<LoginViewModel>(d => d.LoginName)
+                    .WithOne(p => p.Login)
+                    .HasForeignKey<Login>(d => d.LoginName)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Login_Student");
             });*/
-
-            modelBuilder.Entity<Student>(entity =>
+            modelBuilder.Entity<LoginViewModel>(entity =>
             {
+                entity.HasKey(e => e.Email)
+                    .HasName("PK__Login__DB8464FEA86DD733");
+
+                entity.Property(e => e.Email)
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.StudentPW)
+                    .IsRequired()
+                    .HasMaxLength(12)
+                    .IsUnicode(false);
+            });
+            modelBuilder.Entity<Students>(entity =>
+            {
+                entity.HasKey(e => e.StudentId);
+
                 entity.Property(e => e.StudentId)
                     .HasColumnName("StudentID")
                     .HasMaxLength(10)
@@ -118,8 +133,12 @@ namespace WebApp_Rds_Access.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Program)
+                entity.Property(e => e.Email)
                     .HasMaxLength(8)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.StudentPW)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
             });
 

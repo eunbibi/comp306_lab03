@@ -34,8 +34,9 @@ namespace WebApp_Rds_Access
             builder.Password = Configuration["DbPassword"];
 
             var connection = builder.ConnectionString;
-  
-            services.AddDbContext<SMSContext>(options => options.UseSqlServer(connection));
+
+            /*  services.AddDbContext<SMSContext>(options => options.UseSqlServer(connection));*/
+            services.AddDbContext<LearningContext>(options => options.UseSqlServer(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -15,7 +15,7 @@ namespace WebApp_Rds_Access.Models
         public string LastName { get; set; }
         public string Program { get; set; }
 
-        public virtual Login Login { get; set; }
+        public virtual LoginViewModel Login { get; set; }
         public virtual ICollection<Enrollment> Enrollment { get; set; }
     }
 }

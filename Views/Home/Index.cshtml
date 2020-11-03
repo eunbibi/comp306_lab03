@@ -2,7 +2,37 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@*<div class="text-center">
+        <h1>hi</h1>
+        <h1 class="display-4">Welcome</h1>
+        <p>Eunbi Seo, Dilan Mian</p>
+    </div>
+*@
+<link href="~/css/site.css" rel="stylesheet" />
+
+
+<div class="container-fluid mx-0 px-0">
+    <div style="
+        height: 500px;
+        background-image: url(https://images.unsplash.com/photo-1494599948593-3dafe8338d71?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80);
+        background-size: cover;">
+    </div>
+    @*Photo by Arseny Togulev on Unsplash*@
+
+    <div class="container d-flex mx-auto">
+        <div class="p-4">
+            <h1 class="display-4 my-2">What's E-academy?</h1>
+            <p>
+                E-academy is the leading global marketplace for teaching and learning, connecting many of students to the skills they need to succeed.
+            </p>
+        </div>
+        <div style="margin-left: 20px"></div>
+        <div class="p-4">
+            @*Definition reference: Wikipedia*@
+            <h1 class="display-4 my-2" style="text-align:right">What we do?</h1>
+            <p style="text-align:right">
+                By connecting students all over the world to the best instructors, E-academy is helping individuals reach their English goals and pursue their dreams.
+            </p>
+        </div>
+    </div>
 </div>

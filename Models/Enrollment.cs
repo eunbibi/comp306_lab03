@@ -9,6 +9,6 @@ namespace WebApp_Rds_Access.Models
         public string CourseCode { get; set; }
 
         public virtual Course CourseCodeNavigation { get; set; }
-        public virtual Student Student { get; set; }
+        public virtual Students Student { get; set; }
     }
 }

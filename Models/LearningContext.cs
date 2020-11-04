@@ -19,15 +19,17 @@ namespace WebApp_Rds_Access.Models
         public virtual DbSet<Enrollment> Enrollment { get; set; }
         public virtual DbSet<Login> Login { get; set; }*/
         public virtual DbSet<Students> Students { get; set; }
+        public virtual DbSet<Teachers> Teachers { get; set; }
+        public virtual DbSet<Resume> Resume { get; set; }
 
-      /*  protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=sqlserver-comp306.cuhps7zqu8qb.us-east-1.rds.amazonaws.com,1433; database=SMS; User ID=admin; Password=akt1ehd2;");
-            }
-        }*/
+        /*  protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+          {
+              if (!optionsBuilder.IsConfigured)
+              {
+  #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                  optionsBuilder.UseSqlServer("Data Source=sqlserver-comp306.cuhps7zqu8qb.us-east-1.rds.amazonaws.com,1433; database=SMS; User ID=admin; Password=akt1ehd2;");
+              }
+          }*/
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -138,6 +140,32 @@ namespace WebApp_Rds_Access.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.StudentPW)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Teachers>(entity =>
+            {
+                entity.HasKey(e => e.TeacherId);
+
+                entity.Property(e => e.TeacherId)
+                    .HasColumnName("TeacherID")
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.FirstName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.LastName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Email)
+                    .HasMaxLength(8)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.TeacherPW)
                     .HasMaxLength(20)
                     .IsUnicode(false);
             });

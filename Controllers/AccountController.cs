@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApp_Rds_Access.Models;
@@ -12,12 +13,21 @@ namespace WebApp_Rds_Access.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+      /*  [AllowAnonymous]
+        public ViewResult Login1Async(string returnUrl)
+        {
+            return View("Index", "Home");
+            *//*return View(new LoginViewModel
+            {
+               // ReturnUrl = returnUrl
+            });*//*
+        }*/
+
         private readonly LearningContext _context;
         public AccountController(LearningContext context)
         {
             _context = context;
         }
-
         public async Task<IActionResult> Index()
         {
             return View(await _context.Students.ToListAsync());
@@ -89,11 +99,8 @@ namespace WebApp_Rds_Access.Controllers
                     var user = _context.Students.FirstOrDefault(u => u.Email.Equals(model.Email) && u.StudentPW.Equals(model.StudentPW));
                     if (user != null)
                     {
-                        if (user.LastName == "Suh")
-                        { 
                         
-                        }
-                        return RedirectToAction(nameof(Index));
+                        return RedirectToAction("Students","Student");
                     }
                     else
                     {

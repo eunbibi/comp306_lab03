@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using WebApp_Rds_Access.Models;
 using Microsoft.Data.SqlClient;
+using Microsoft.AspNetCore.Identity;
 
 namespace WebApp_Rds_Access
 {
@@ -28,6 +29,7 @@ namespace WebApp_Rds_Access
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            //services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<LearningContext>().AddDefaultTokenProviders();
 
             var builder = new SqlConnectionStringBuilder(Configuration.GetConnectionString("Connection2RDS"));
             builder.UserID = Configuration["DbUser"];
@@ -36,7 +38,7 @@ namespace WebApp_Rds_Access
             var connection = builder.ConnectionString;
 
             /*  services.AddDbContext<SMSContext>(options => options.UseSqlServer(connection));*/
-            services.AddDbContext<LearningContext>(options => options.UseSqlServer(connection));
+             services.AddDbContext<LearningContext>(options => options.UseSqlServer(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -14,9 +14,9 @@ namespace WebApp_Rds_Access.Models
         public string Password { get; set; }
 */
 
-        [Required(ErrorMessage = "Please enter 3")]
+        [Required(ErrorMessage = "Please enter Email")]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Please enter 4")]
+        [Required(ErrorMessage = "Please enter pw")]
         public string StudentPW { get; set; }
 
         //public virtual Students LoginNameNavigation { get; set; }

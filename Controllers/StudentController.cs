@@ -63,19 +63,19 @@ namespace WebApp_Rds_Access.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StudentId,FirstName,LastName,Email")] Students students)
+        public async Task<IActionResult> Create([Bind("StudentId,FirstName,LastName,Email,StudentPW")] Students students)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(students);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Students));
             }
             return View(students);
         }
 
         // GET: Students/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int id)
         {
             if (id == null)
             {
@@ -95,7 +95,7 @@ namespace WebApp_Rds_Access.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("StudentId,FirstName,LastName,Email")] Students students)
+        public async Task<IActionResult> Edit(int id, [Bind("StudentId,FirstName,LastName,Email,StudentPW")] Students students)
         {
             if (id != students.StudentId)
             {
@@ -120,7 +120,7 @@ namespace WebApp_Rds_Access.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Students));
             }
             return View(students);
         }
@@ -151,7 +151,7 @@ namespace WebApp_Rds_Access.Controllers
             var student = await _context.Students.FindAsync(id);
             _context.Students.Remove(student);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Students));
         }
 
         private bool StudentExists(int id)
